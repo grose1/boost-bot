@@ -17,7 +17,7 @@ log.info('Booting up...');
 log.info(`Host: ${process.env.API_HOST}, Hashtag: #${config.hashtag}`);
 
 const client   = new Mastodon(config);
-const es       = new EventSource(`${config.api_url}streaming/hashtag/local?access_token=${config.access_token}&tag=${config.hashtag}`);
+const es       = new EventSource(`${config.api_url}streaming/hashtag?access_token=${config.access_token}&tag=${config.hashtag}`);
 const throttle = throttledQueue(1, 15000);
 
 es.addEventListener('update', ({ data }) => {
